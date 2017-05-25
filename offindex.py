@@ -3,7 +3,7 @@
 
 # (c) 2017 - Riccardo Polignieri
 # license: FreeBSD
-# http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# https://github.com/ricpol/gcd-utils
 
 """
 This is a little toolkit to help you with your offline GCD indexing.
@@ -21,7 +21,7 @@ with all your TSV and/or TXT files. You may specify alternative in/out
 directories if you prefer. You may also toy a little with the global 
 variables of the script. 
 Then, just double click and follow the interactive interface. 
-For more help, see xxxxxxxxxxxxxxxxxxxxxxxx
+For more help, see https://github.com/ricpol/gcd-utils
 """
 
 from __future__ import print_function, unicode_literals

@@ -107,7 +107,7 @@ Known issues.
 License and copyright.
 ----------------------
 
-(c) 2017 - Riccardo Polignieri
+copyright 2017 - Riccardo Polignieri
 
 license: FreeBSD
 

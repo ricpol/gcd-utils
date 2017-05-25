@@ -1,0 +1,144 @@
+// issue data:
+number         
+ind-publisher  
+brand          
+pub-date       
+key-date       
+ind-frequency  
+price          
+page-count     1
+editing        
+// other allowed fields:
+// volume issue-title on-sale-date isbn barcode keywords notes
+==============================
+// sequences data:
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================
+title          
+type           
+feature        
+genre          
+pages          1.000
+script         None
+pencils        None
+inks           None
+colors         None
+letters        None
+// other allowed fields:
+// editing job-number characters synopsis keywords notes reprint-notes
+==============================

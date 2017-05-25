@@ -1,0 +1,94 @@
+// issue data:
+number         235
+ind-publisher  DC Comics
+brand          DC [circle and serifs]
+pub-date       March 2017
+key-date       2017-03-00
+on-sale-date   2017-01-25
+price          2.99 USD
+page-count     36.000
+editing        Brittany Holzherr
+// other fields: volume issue-title ind-frequency isbn barcode keywords notes
+==============================
+// sequences data:
+type           cover
+feature        Porky Pig and Daffy Duck
+genre          anthropomorphic-funny animals
+pages          1.000
+script         None
+pencils        Dave Alvarez (signed)
+inks           Dave Alvarez (signed)
+colors         ?
+letters        Dave Alvarez
+editing        None
+characters     Daffy Duck; Porky Pig
+// other fields: title job-number synopsis keywords notes reprint-notes
+==============================
+title          His and Hermit
+type           comic story
+feature        Porky Pig and Daffy Duck
+genre          anthropomorphic-funny animals
+pages          8.000
+script         Sholly Fisch
+pencils        Dave Alvarez
+inks           Dave Alvarez
+colors         Dave Alvarez
+letters        Saida Temofonte
+editing        None
+job-number     DCC038165
+characters     Porky Pig; Daffy Duck
+synopsis       Porky's monastery peace and quiet is shattered by the monastery's latest recruit.
+notes          The backgrounds are filled with Warner cartoon bit players, including Bosko, The Three Little Bops, Lucky Pierre, The Crusher, Percy Cat, Injun Joe, Dora Standpipe, Granny and Sylvester, as well as caricatures of George Arliss, Freddie Bartholomew, Edna Mae Oliver and Leslie Howard.
+// other fields: keywords reprint-notes
+==============================
+title          Barbecue Bunny
+type           comic story
+feature        Bugs Bunny
+genre          anthropomorphic-funny animals
+pages          1.000
+script         Bill Matheny
+pencils        Dave Alvarez
+inks           Mike DeCarlo
+colors         David Tanguay
+letters        Jared K. Fletcher
+editing        Joan Hilty
+job-number     WB2101
+characters     Bugs Bunny; Daffy Duck
+synopsis       Bugs invites Daffy over for barbecue.
+reprint-notes  from Looney Tunes (DC, 1994 series) #119 (December 2004)
+// other fields: keywords notes
+==============================
+title          Storm Warning
+type           comic story
+feature        Bugs Bunny
+genre          anthropomorphic-funny animals
+pages          1.000
+script         Brett Koth
+pencils        Brian Garvey
+inks           Mike DeCarlo
+colors         David Tanguay
+letters        Ryan Cline
+editing        Joan Hilty
+job-number     WB1828
+characters     Bugs Bunny; Daffy Duck
+synopsis       Daffy can predict the weather.
+reprint-notes  from Looney Tunes (DC, 1994 series) #74 [Direct Sales] (March 2001)
+// other fields: keywords notes
+==============================
+title          A Vase in the Crowd
+type           comic story
+feature        Daffy Duck
+genre          anthropomorphic-funny animals; detective-mystery
+pages          10.000
+script         Jesse Leon McCann
+pencils        Leo Batic
+inks           Mike DeCarlo
+colors         Digital Chameleon
+letters        John Costanza
+editing        Heidi McDonald
+job-number     WB1801
+characters     Daffy Duck [as Duck Twacy]; Bugs Bunny
+synopsis       Daffy must protect two priceless archaeological artifacts from being stolen from a museum.
+reprint-notes  from Looney Tunes (DC, 1994 series) #66 (July 2000)
+// other fields: keywords notes
+==============================

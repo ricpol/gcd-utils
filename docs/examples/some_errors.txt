@@ -1,0 +1,52 @@
+// NOTE: this file has 7 errors!
+// issue data:
+number         1
+key-date       2017-00-10 // this shouldn't pass
+page-count     36.000 ?  // this is ok
+==============================
+// sequences data:
+type           cover
+genre          fantasy; horror; sf  // abbreviations are ok
+pages          one       // not ok
+==============================
+type           Comic Story        // ok, genres are case insensitive
+genre          funny animals     // non registered abbreviation fails
+pages          8.000
+==============================
+type           photo still        // not a registered type, fails
+genre          superhero
+pages          3.000+             // fails
+==============================
+type           comic story
+this is a funny spurious line    // and will fail
+// but this is a comment line, and it's ok
+genre          superhero
+
+// blank lines are also ok
+
+pages          1.000
+==============================
+type           comic story
+// please note: repeating the same field doesn't count as an error
+// but only the last version will appear in the TSV output
+genre          superhero
+genre          sf
+genre          boring story  //  last one is wrong, will fail
+==============================
+//
+// if you convert this file to TSV, 
+// you will get an "errors.txt" as follows:
+//
+//-- file some_errors.txt, issue data:
+//invalid date: 2017-00-10
+//-- file some_errors.txt, seq. 0:
+//invalid page count: one
+//-- file some_errors.txt, seq. 1:
+//invalid genre(s): funny animals
+//-- file some_errors.txt, seq. 2:
+//invalid type: photo still
+//invalid page count: 3.000+
+//-- file some_errors.txt, seq. 3:
+//invalid line: this is a funny spurious line
+//-- file some_errors.txt, seq. 4:
+//invalid genre(s): boring story

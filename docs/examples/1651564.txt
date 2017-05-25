@@ -1,0 +1,76 @@
+// issue data:
+number         20
+pub-date       2016年8月9日
+key-date       2016-08-09
+page-count     None
+isbn           978-4-06-395720-4
+// other fields: volume issue-title ind-publisher brand on-sale-date ind-frequency price editing barcode keywords notes
+==============================
+// sequences data:
+type           cover
+feature        進撃の巨人 [Attack on Titan]
+pages          1.000
+script         None
+pencils        諫山創 [Hajime Isayama]
+inks           諫山創 [Hajime Isayama]
+colors         諫山創 [Hajime Isayama]
+letters        ?
+editing        None
+// other fields: title genre job-number characters synopsis keywords notes reprint-notes
+==============================
+title          79
+type           comic story
+feature        進撃の巨人 [Attack on Titan]
+genre          science fiction
+pages          None
+script         諫山創 [Hajime Isayama]
+pencils        諫山創 [Hajime Isayama]
+inks           諫山創 [Hajime Isayama]
+colors         None
+letters        ?
+editing        None
+reprint-notes  from 別冊少年マガジン [Bessatsu Shōnen Magajin / Separate Shonen Magazine] (講談社 [Kodansha], 2009 series) #4/2016
+// other fields: job-number characters synopsis keywords notes
+==============================
+title          80
+type           comic story
+feature        進撃の巨人 [Attack on Titan]
+genre          science fiction
+pages          None
+script         諫山創 [Hajime Isayama]
+pencils        諫山創 [Hajime Isayama]
+inks           諫山創 [Hajime Isayama]
+colors         None
+letters        ?
+editing        None
+reprint-notes  from 別冊少年マガジン [Bessatsu Shōnen Magajin / Separate Shonen Magazine] (講談社 [Kodansha], 2009 series) #5/2016
+// other fields: job-number characters synopsis keywords notes
+==============================
+title          81
+type           comic story
+feature        進撃の巨人 [Attack on Titan]
+genre          science fiction
+pages          None
+script         諫山創 [Hajime Isayama]
+pencils        諫山創 [Hajime Isayama]
+inks           諫山創 [Hajime Isayama]
+colors         None
+letters        ?
+editing        None
+reprint-notes  from 別冊少年マガジン [Bessatsu Shōnen Magajin / Separate Shonen Magazine] (講談社 [Kodansha], 2009 series) #6/2016
+// other fields: job-number characters synopsis keywords notes
+==============================
+title          82
+type           comic story
+feature        進撃の巨人 [Attack on Titan]
+genre          science fiction
+pages          None
+script         諫山創 [Hajime Isayama]
+pencils        諫山創 [Hajime Isayama]
+inks           諫山創 [Hajime Isayama]
+colors         None
+letters        ?
+editing        None
+reprint-notes  from 別冊少年マガジン [Bessatsu Shōnen Magajin / Separate Shonen Magazine] (講談社 [Kodansha], 2009 series) #7/2016
+// other fields: job-number characters synopsis keywords notes
+==============================

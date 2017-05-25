@@ -1,0 +1,148 @@
+// this example index file is based on 
+// https://www.comics.org/issue/1698415/
+//
+// issue data:
+number         5
+ind-publisher  Casa Editrice Universo spa 
+pub-date       9 Marzo 1993
+key-date       1993-03-09
+ind-frequency  Quattordicinale
+price          2500 ITL
+page-count     100
+editing        Nicola De Feo; Sergio Del Duca; Carlo Pedrocchi
+============================== // end-of-sequence mark
+// sequences data:
+//
+// we just skip unused fields - they will be filled with default values 
+type           cover
+pages          1.000
+pencils        Luca Enoch
+inks           Luca Enoch
+colors         ?
+letters        typeset
+==============================
+
+// blank lines are ok 
+
+type           advertisement
+pages          1.000
+letters        typeset
+notes          Pubblicità per Sicof '93.
+==============================
+type           credits // (registered) abbreviation are fine
+pages          0.250
+letters        typeset
+==============================
+type           contents // another abbreviation...
+pages          0.750
+letters        typeset
+==============================
+title          ["Tu lo sai cosa dicono di me?"] // unofficial title
+type           cartoon
+feature        I Mitici
+pages          1                   // integers are fine too
+script         Massimo Cavezzali
+pencils        Massimo Cavezzali
+inks           Massimo Cavezzali
+colors         ?
+letters        Massimo Cavezzali
+genre          satire-parody
+==============================
+title          Il Grande Raffreddore
+type           Comic Story  // types are case insensitive anyways
+pages          14
+script         Giuseppe De Nardo
+pencils        Giuliano Piccininno
+inks           Giuliano Piccininno
+colors         ?
+letters        Giuliano Piccininno
+genre          humor; sf   // abbreviation...
+==============================
+--SKIP   // this sequence won't be included in output!
+type           advertisement
+pages          1.000
+letters        typeset
+notes          Pubblicità per un prodotto dimagrante.
+==============================
+title          L'Ultima Speranza
+type           comic story
+feature        Alien
+pages          23
+script         Carmelo Gozzo
+pencils        Dino Simeoni
+inks           Dino Simeoni
+colors         ?
+letters        Dino Simeoni
+genre          sf; horror; crime  // abbreviations...
+==============================
+title          ["Ieri sera ho corso un grosso pericolo..."]
+type           cartoon
+feature        I Mitici
+pages          1.000
+script         Massimo Cavezzali
+pencils        Massimo Cavezzali
+inks           Massimo Cavezzali
+colors         ?
+letters        Massimo Cavezzali
+genre          satire-parody
+==============================
+title          Razzismo
+type           comic story
+feature        Billitteri
+pages          4
+script         Giuseppe De Nardo
+pencils        Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
+inks           Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
+colors         ?
+letters        Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
+genre          domestic; teen; humor
+==============================
+title          ["Il calippo!!"]
+type           cartoon
+feature        I Mitici
+pages          1.000
+script         Massimo Cavezzali
+pencils        Massimo Cavezzali
+inks           Massimo Cavezzali
+colors         ?
+letters        Massimo Cavezzali
+genre          satire-parody
+==============================
+type           letters page
+pages          3.000
+script         ? [as Sauro]
+letters        typeset
+notes          Lettere di Emanuela, Dana Cipriano, Nello, F. Disegni 
+==============================
+title          Cuore Nero
+type           comic story
+pages          23
+script         Michelangelo La Neve
+pencils        Lucia Arduini
+inks           Lucia Arduini
+colors         ?
+letters        Lucia Arduini
+genre          fantasy-supernatural; crime
+notes          Prima parte. Seconda parte sul prossimo numero.
+==============================
+type           promo
+pages          1.000
+letters        typeset
+notes          Le storie del prossimo numero.
+==============================
+type           advertisement
+pages          1.000
+letters        typeset
+notes          Pubblicità per l'Associazione Italiana Contro l'Epilessia.
+==============================
+type           promo
+pages          1.000
+letters        typeset
+notes          Pubblicità per le ristampe anastatiche di Intrepido.
+==============================
+title          [quarta di copertina (back cover)]
+type           advertisement
+pages          1.000
+letters        typeset
+notes          Pubblicità per lo snack Lion. 
+==============================

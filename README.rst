@@ -50,6 +50,8 @@ There are also a few little tricks and shortcuts to speed up your work:
 
 * you can skip a field you don't need (there are convenient defaults for needed "SPICLE" fields): just delete the field line from your file. By writing only the relevant fields in each sequence, you keep your file more compact and readable;
 
+* you may repeat the same field more than once in the same sequence: all values will be concatenated in the output;
+
 * comments (`//` marks) and blank lines are ok and will be ignored;
 
 * you may put a `--SKIP` mark anywhere inside a sequence to prevent that sequence to be outputted. This is sometimes needed when you are indexing many similar issues from a common blueprint;

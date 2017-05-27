@@ -336,7 +336,10 @@ class OfflineIndexer:
                 k = line[:PADDING].strip()
                 if k in field_names:
                     v = line[PADDING:].strip()
-                    data[k] = v
+                    try:
+                        data[k] += v
+                    except KeyError:
+                        data[k] = v
                 else:
                     err = 'invalid line: ' + line
                     errors.append(err)

@@ -56,6 +56,9 @@ pencils        Giuliano Piccininno
 inks           Giuliano Piccininno
 colors         ?
 letters        Giuliano Piccininno
+// if you repeat the same field, values will be concatenated
+// this will output "Giuseppe De Nardo; Giuliano Piccininno"
+script         ; Giuliano Piccininno 
 genre          humor; sf   // abbreviation...
 ==============================
 --SKIP   // this sequence won't be included in output!

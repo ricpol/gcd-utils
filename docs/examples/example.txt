@@ -94,10 +94,22 @@ type           comic story
 feature        Billitteri
 pages          4
 script         Giuseppe De Nardo
-pencils        Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
-inks           Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
+
+// "multi-line" fields - indented lines will be concatenated
+pencils        Bruno Brindisi; 
+               Luigi Siniscalchi;
+               Roberto De Angelis
+
+inks           Bruno Brindisi; 
+               Luigi Siniscalchi; 
+               Roberto De Angelis
+
 colors         ?
-letters        Bruno Brindisi; Luigi Siniscalchi; Roberto De Angelis
+
+letters        Bruno Brindisi; 
+               Luigi Siniscalchi; 
+               Roberto De Angelis
+
 genre          domestic; teen; humor
 ==============================
 title          ["Il calippo!!"]

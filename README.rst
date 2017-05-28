@@ -50,7 +50,7 @@ There are also a few little tricks and shortcuts to speed up your work:
 
 * you can skip a field you don't need (there are convenient defaults for needed "SPICLE" fields): just delete the field line from your file. By writing only the relevant fields in each sequence, you keep your file more compact and readable;
 
-* you may repeat the same field more than once in the same sequence: all values will be concatenated in the output;
+* you may repeat the same field more than once in the same sequence: all values will be concatenated in the output. Also, "multi-line" fields are allowed: all same-indented lines below the first will be concatenated (open the example files to see how this works);
 
 * comments (`//` marks) and blank lines are ok and will be ignored;
 
@@ -97,14 +97,14 @@ TODO.
 
 * Check for required fields, check page count.
 
-* Allow new lines inside a field (or at leas inside notes/synopsis).
-
 Known issues.
 -------------
 
 * Cross-version/platform unicode support in Python is hard. Depending on your operative system, locale and/or shell, the script might just crash on non-ASCII paths and file names, when launched by Python 2. But it should be ok on Python 3, and/or if you carefully rename your files to ASCII-only characters. Besides, non-ASCII filenames will only appear weird in the shell output - but generated file content will always be ok (ie, utf-8). 
 
 * The script doesn't bother to check for already existing output file names, and will simply *append* the new content to the old. Which means, for example, that if by mistake you generate TSV output twice in a row, you will end up with a single TSV file containing twice the same sequences. So, be careful to clear output directory before launching the script. 
+
+* You can't break lines inside a "descriptive" field (eg. notes, synopsis...). Unfortunately GCD import mechanism doesn't check for new-line marks, so you'll have to manually add your line breaks in the web interface. 
 
 License and copyright.
 ----------------------

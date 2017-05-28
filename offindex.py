@@ -327,17 +327,20 @@ class OfflineIndexer:
         data = {}
         errors = []
         tsvline = []
+        last_field_name = ''
         for raw_line in seq_lines:
             if raw_line.startswith(SKIP_WORD):
                 return '', ''
             line = raw_line.split(COMMENT_MARK)[0]
-            line = line.strip()
-            if line:
+            if line.strip():
                 k = line[:PADDING].strip()
+                if not k:
+                    k = last_field_name
                 if k in field_names:
+                    last_field_name = k
                     v = line[PADDING:].strip()
                     try:
-                        data[k] += v
+                        data[k] = ' '.join((data[k], v))
                     except KeyError:
                         data[k] = v
                 else:

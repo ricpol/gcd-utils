@@ -1,4 +1,4 @@
-#! python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # (c) 2017 - Riccardo Polignieri
@@ -158,6 +158,56 @@ MAX_VALID_YEAR = 2018 # allow some margin...
 # your editor's encoding of choice - utf-8 *recommended*
 ENCODING = 'utf-8'
 
+# ----------------------------------------------------------------------
+# Change settings below only if you want this module to query 
+# a local GCD MySql dump (see docs for details!)
+# ----------------------------------------------------------------------
+
+# enable querying db (True enables, False disables)
+# if disabled, all other settings won't matter
+USE_GCD_DUMP = True
+
+# db parameters: you may leave any of these settings blank:
+# you will be prompted at runtime
+DB_USER = 'root'
+DB_PASSWORD = ''
+DB_NAME = 'gcd'
+DB_HOST = 'localhost'
+DB_PORT = '3306'
+
+# in your index file, start a field with this mark followed by story id 
+# to query the GCD MySql dump for the value of the field (see docs!)
+DB_QUERY_MARK = '>'
+
+# these translations will be applied 
+# *only* to SPICLE fields picked up from the database dump
+# (examples below are English to Italian: feel free to adapt!)
+TRANSLATIONS = (
+#    original                  translation
+    ('signed',                 'firmato'),
+    ('painted',                'dipinto'),
+    ('plot',                   'trama'),
+    ('co-plot',                'co-ideatore'),
+    ('Co-Plot',                'co-ideatore'),
+    ('script',                 'dialoghi'),
+    ('dialog',                 'dialoghi'),
+    ('dialogs',                'dialoghi'),
+    ('layouts',                'layout'),
+    ('backgrounds',            'sfondi'),
+    ('background',             'sfondo'),
+    ('pencils',                'matite'),
+    ('breakdowns',             'schizzi'),
+    ('sketch',                 'abbozzo'),
+    ('finished art',           'disegni finiti'),
+    ('uncredited',             'non citato'),
+    ('pages',                  'pag.'),
+    ('page',                   'pag.'),
+               )
+
+# enable / disable translations
+USE_TRANSLATIONS = True
+
+
 # ======================================================================
 # you should not edit below this point!
 # ======================================================================
@@ -170,11 +220,18 @@ if sys.version_info.major == 2:
     import codecs
     writer = codecs.getwriter('utf8') # at least we won't crash 
     sys.stdout = writer(sys.stdout)   # on non-ascii paths in py2
+if USE_GCD_DUMP:
+    try:
+        import MySQLdb
+    except ImportError:
+        print("Can't import MySQLdb - GCD dump querying won't work!\n")
+        USE_GCD_DUMP = False
 
 PADDING = 15
 SEQ_DELIMITER = '='*30
 ERROR_FILENAME = 'ERRORS.txt'
 HERE = os.path.abspath(os.path.dirname(__file__))
+
 
 def validate_keydate(data):
     err = 'invalid date: ' + data
@@ -262,6 +319,38 @@ class OfflineIndexer:
         self.out_dir = os.path.join(HERE, OUTPUT_DIR)
         self.srt_issue_fields = sorted(ISSUE_FIELDS, key=lambda i:i[2])
         self.srt_seqs_fields = sorted(SEQUENCE_FIELDS, key=lambda i:i[2])
+        if USE_GCD_DUMP: 
+            self.con = self._connect_to_db()
+            if self.con is False:
+                print("Can't conect to db - GCD dump querying won't work!")
+                self.use_db = False
+            else:
+                self.use_db = True
+                self.cursor = self.con.cursor()
+        else:
+            self.use_db = False
+
+    def quit(self):
+        if self.use_db:
+            self.con.close()
+
+    def _connect_to_db(self):
+        user = DB_USER or input('db connection: username? ').strip()
+        passwd = DB_PASSWORD or input('db connection: password? ').strip()
+        db = DB_NAME or input('db connection: db name? ').strip()
+        host = DB_HOST or input('db connection: db host? ').strip()
+        port = DB_PORT or input('db connection: db port? ').strip()
+        try: 
+            port = int(port)
+        except: 
+            print("Wrong port number - GCD dump querying won't work!")
+            return False
+        try:
+            return MySQLdb.connect(user=user, passwd=passwd, 
+                                   db=db, host=host, port=port)
+        except:
+            print("Can't conect to db - GCD dump querying won't work!")
+            return False
 
     def set_in_dir(self, d):
         d = os.path.join(HERE, d)
@@ -320,6 +409,68 @@ class OfflineIndexer:
                               ' '.join(no_data), file=out_file)
                         print(SEQ_DELIMITER, file=out_file)
 
+    def _query_db(self, field_name, id_):
+        err = "Can't query db for this field/id: %s, %i" % (field_name, id_)
+        if field_name == 'title': 
+            sql = 'select title, title_inferred from gcd_story where id=%s'
+            try:
+                self.cursor.execute(sql, (id_,))
+                title, inferred = self.cursor.fetchall()[0]
+            except:
+                return '', err
+            if inferred:
+                title = '['+title+']'
+            return title, ''
+        if field_name == 'job-number':
+            field_name = 'job_number'
+        if field_name in ('feature', 'characters', 'genre', 'synopsis', 
+                          'notes', 'job_number'):
+            sql = 'select ' + field_name +  ' from gcd_story where id=%s'
+            try:
+                self.cursor.execute(sql, (id_,))
+                return self.cursor.fetchall()[0][0], ''
+            except:
+                return '', err
+        if field_name == 'pages':
+            sql = '''select page_count, page_count_uncertain 
+                     from gcd_story where id=%s'''
+            try:
+                self.cursor.execute(sql, (id_,))
+                pages, uncertain = self.cursor.fetchall()[0]
+            except:
+                return '', err
+            if pages is None:
+                pages = ''
+            pages = str(pages)
+            if uncertain:
+                pages += ' ?'
+            return pages, ''
+        if field_name in ('script', 'pencils', 'inks',  
+                          'colors', 'letters', 'editing'):
+            sql = 'select ' + field_name + ', no_' + field_name + \
+                                           ' from gcd_story where id=%s'
+            try:
+                self.cursor.execute(sql, (id_,))
+                artist, no_artist = self.cursor.fetchall()[0]
+            except:
+                return '', err
+            if no_artist:
+                artist = 'None'
+            if USE_TRANSLATIONS:
+                for orig, trans in TRANSLATIONS:
+                    artist = artist.replace(orig, trans)
+            return artist, ''
+        if field_name == 'type':
+            sql = """select gcd_story_type.name from gcd_story 
+                     join gcd_story_type on gcd_story.type_id=gcd_story_type.id 
+                     where gcd_story.id=%s"""
+            try:
+                self.cursor.execute(sql, (id_,))
+                return self.cursor.fetchall()[0][0], ''
+            except:
+                return '', err
+        return '', err
+
     def _sequence2tsvline(self, seq_lines, is_issue=True):
         "Converts a single sequence to a single tsv line."
         fields = ISSUE_FIELDS if is_issue else SEQUENCE_FIELDS
@@ -339,6 +490,20 @@ class OfflineIndexer:
                 if k in field_names:
                     last_field_name = k
                     v = line[PADDING:].strip()
+                    if v.startswith(DB_QUERY_MARK):
+                        if self.use_db:
+                            try:
+                                id_ = int(v.split(DB_QUERY_MARK)[1])
+                            except ValueError:
+                                err = 'invalid database id: ' + line
+                                errors.append(err)
+                            v, err = self._query_db(k, id_)
+                            if err:
+                                errors.append(err)
+                        else:
+                            err = 'db query mark found, but no db selected: '\ 
+                                                                        + line
+                            errors.append(err)
                     try:
                         data[k] = ' '.join((data[k], v))
                     except KeyError:
@@ -492,6 +657,7 @@ def main():
         elif choice == 'h':
             print(__doc__)
         elif choice == 'q':
+            o.quit()
             sys.exit(0)
         else:               # default
             o.txt2tsv()

@@ -501,7 +501,7 @@ class OfflineIndexer:
                             if err:
                                 errors.append(err)
                         else:
-                            err = 'db query mark found, but no db selected: '\ 
+                            err = 'db query mark found, but no db selected: '\
                                                                         + line
                             errors.append(err)
                     try:

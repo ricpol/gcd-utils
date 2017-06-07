@@ -326,7 +326,6 @@ class OfflineIndexer:
                 self.use_db = False
             else:
                 self.use_db = True
-                self.cursor = self.con.cursor()
         else:
             self.use_db = False
 
@@ -347,7 +346,8 @@ class OfflineIndexer:
             return False
         try:
             return MySQLdb.connect(user=user, passwd=passwd, 
-                                   db=db, host=host, port=port)
+                                   db=db, host=host, port=port, 
+                                   charset='utf8')
         except:
             print("Can't conect to db - GCD dump querying won't work!")
             return False
@@ -411,65 +411,67 @@ class OfflineIndexer:
 
     def _query_db(self, field_name, id_):
         err = "Can't query db for this field/id: %s, %i" % (field_name, id_)
-        if field_name == 'title': 
-            sql = 'select title, title_inferred from gcd_story where id=%s'
-            try:
-                self.cursor.execute(sql, (id_,))
-                title, inferred = self.cursor.fetchall()[0]
-            except:
-                return '', err
-            if inferred:
-                title = '['+title+']'
-            return title, ''
-        if field_name == 'job-number':
-            field_name = 'job_number'
-        if field_name in ('feature', 'characters', 'genre', 'synopsis', 
-                          'notes', 'job_number'):
-            sql = 'select ' + field_name +  ' from gcd_story where id=%s'
-            try:
-                self.cursor.execute(sql, (id_,))
-                return self.cursor.fetchall()[0][0], ''
-            except:
-                return '', err
-        if field_name == 'pages':
-            sql = '''select page_count, page_count_uncertain 
-                     from gcd_story where id=%s'''
-            try:
-                self.cursor.execute(sql, (id_,))
-                pages, uncertain = self.cursor.fetchall()[0]
-            except:
-                return '', err
-            if pages is None:
-                pages = ''
-            pages = str(pages)
-            if uncertain:
-                pages += ' ?'
-            return pages, ''
-        if field_name in ('script', 'pencils', 'inks',  
-                          'colors', 'letters', 'editing'):
-            sql = 'select ' + field_name + ', no_' + field_name + \
-                                           ' from gcd_story where id=%s'
-            try:
-                self.cursor.execute(sql, (id_,))
-                artist, no_artist = self.cursor.fetchall()[0]
-            except:
-                return '', err
-            if no_artist:
-                artist = 'None'
-            if USE_TRANSLATIONS:
-                for orig, trans in TRANSLATIONS:
-                    artist = artist.replace(orig, trans)
-            return artist, ''
-        if field_name == 'type':
-            sql = """select gcd_story_type.name from gcd_story 
-                     join gcd_story_type on gcd_story.type_id=gcd_story_type.id 
-                     where gcd_story.id=%s"""
-            try:
-                self.cursor.execute(sql, (id_,))
-                return self.cursor.fetchall()[0][0], ''
-            except:
-                return '', err
-        return '', err
+        with self.con as cursor:
+            if field_name == 'title': 
+                sql = 'select title, title_inferred from gcd_story where id=%s'
+                try:
+                    cursor.execute(sql, (id_,))
+                    title, inferred = cursor.fetchall()[0]
+                except:
+                    return '', err
+                if inferred:
+                    title = '['+title+']'
+                return title, ''
+            if field_name == 'job-number':
+                field_name = 'job_number'
+            if field_name in ('feature', 'characters', 'genre', 'synopsis', 
+                              'notes', 'job_number'):
+                sql = 'select ' + field_name +  ' from gcd_story where id=%s'
+                try:
+                    cursor.execute(sql, (id_,))
+                    return cursor.fetchall()[0][0], ''
+                except:
+                    return '', err
+            if field_name == 'pages':
+                sql = '''select page_count, page_count_uncertain 
+                         from gcd_story where id=%s'''
+                try:
+                    cursor.execute(sql, (id_,))
+                    pages, uncertain = cursor.fetchall()[0]
+                except:
+                    return '', err
+                if pages is None:
+                    pages = ''
+                pages = str(pages)
+                if uncertain:
+                    pages += ' ?'
+                return pages, ''
+            if field_name in ('script', 'pencils', 'inks',  
+                              'colors', 'letters', 'editing'):
+                sql = 'select ' + field_name + ', no_' + field_name + \
+                                               ' from gcd_story where id=%s'
+                try:
+                    cursor.execute(sql, (id_,))
+                    artist, no_artist = cursor.fetchall()[0]
+                except:
+                    return '', err
+                if no_artist:
+                    artist = 'None'
+                if USE_TRANSLATIONS:
+                    for orig, trans in TRANSLATIONS:
+                        artist = artist.replace(orig, trans)
+                return artist, ''
+            if field_name == 'type':
+                sql = """select gcd_story_type.name from gcd_story 
+                         join gcd_story_type 
+                         on gcd_story.type_id=gcd_story_type.id 
+                         where gcd_story.id=%s"""
+                try:
+                    cursor.execute(sql, (id_,))
+                    return cursor.fetchall()[0][0], ''
+                except:
+                    return '', err
+            return '', err
 
     def _sequence2tsvline(self, seq_lines, is_issue=True):
         "Converts a single sequence to a single tsv line."

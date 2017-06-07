@@ -506,8 +506,9 @@ class OfflineIndexer:
                             err = 'db query mark found, but no db selected: '\
                                                                         + line
                             errors.append(err)
+                    sep = '' if v.startswith((';', ':', '.', ',')) else ' '
                     try:
-                        data[k] = ' '.join((data[k], v))
+                        data[k] = sep.join((data[k], v))
                     except KeyError:
                         data[k] = v
                 else:

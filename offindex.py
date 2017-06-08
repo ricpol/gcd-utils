@@ -165,7 +165,7 @@ ENCODING = 'utf-8'
 
 # enable querying db (True enables, False disables)
 # if disabled, all other settings won't matter
-USE_GCD_DUMP = True
+USE_GCD_DUMP = False
 
 # db parameters: you may leave any of these settings blank:
 # you will be prompted at runtime

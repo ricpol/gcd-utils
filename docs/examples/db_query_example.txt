@@ -1,0 +1,44 @@
+// This is an excerpt from the Italian series "Fantastici Quattro" #40
+// reprinting "Daredevil" #230.
+// https://www.comics.org/issue/359915
+number         40
+ind-publisher  Edizioni Star Comics srl
+pub-date       28 Febbraio 1991
+key-date       1991-02-28
+price          2500 ITL
+page-count     76
+==============================
+type           cover
+feature        Devil [Daredevil]
+pages          1
+genre          > 236119  // output: superhero
+title          Rinascita
+
+// the two following will both output:
+// David Mazzucchelli [as Mazzucchelli] (signed)
+// that will be translated as:
+// David Mazzucchelli [as Mazzucchelli] (firmato)
+
+pencils        > 236119 
+inks           > 236119
+
+colors         ?
+letters        Luca Loletti (titolo italiano); typeset
+==============================
+title          Rinascita
+type           comic story
+feature        Devil [Daredevil]
+genre          > 236120  // output: superhero
+pages          22
+
+// it's ok to concatenate! The following will ouput:
+// Frank Miller; Pier Paolo Ronchetti (traduzione)
+
+script         > 236120
+               ; Pier Paolo Ronchetti (traduzione)
+
+pencils        > 236120  // output: David Mazzucchelli
+inks           > 236120  // output: David Mazzucchelli
+colors         > 236120  // output: Christie Scheele [as Max Scheele]
+letters        Luca Loletti (titolo italiano); Giuliana Baiocco
+==============================

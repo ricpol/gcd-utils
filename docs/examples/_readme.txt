@@ -29,7 +29,13 @@ example_issue.tsv
 example_seqs.tsv
     correspondent TSV output ready for upload
 
+db_query_example.txt
+    this shows how to make use of the db dump query feature
+db_query_example_issue.tsv
+db_query_example_seqs.tsv
+    correspondent TSV output with actual values picked up from db
 
+    
 some_errors.txt
     This is a manually compiled index, with some errors that will be 
     checked at conversion time. 

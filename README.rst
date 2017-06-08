@@ -18,6 +18,8 @@ Prerequisites.
 
 You should have any of `Python <https://www.python.org/downloads/>`_ 2.7 or 3.3-3.6 installed. 
 
+This script may also query a local dump of the GCD database and filling in missing values in your index file. This is an entirely optional feature: if you plan to take advantage of this capability, you must meet a few more requisites - see below for details. 
+
 Also, do not try offline indexing without a good solid *unicode-aware* text editor - ie, do *not* use NotePad. We recommend `SublimeText <https://www.sublimetext.com/>`_ but any modern text editor will do. Make sure your editor is set up to open/save files with UTF-8 encoding (this should be by default in modern editors).
 
 Convert downloaded TSV index files.
@@ -86,6 +88,30 @@ At the top of the script you will find some editable settings. Most notably:
 * `ALLOWED_TYPES` and `ALLOWED_GENRES` allow you to set a short name for each type/genre;
 
 * `OUTPUT_DIR` and `INPUT_DIR` allow you to set new default in/out directories.
+
+Querying a local dump of CGD database.
+--------------------------------------
+
+This could be very useful when indexing lots of reprints: instead of copy-pasting each relevant field value, you can just fill in the id of the original story, and this script will query a local dump of GCD database for the missing values. 
+
+For this to be enabled, you must meet some further requirements:
+
+* you must have a local `MySQL<https://dev.mysql.com/downloads/>`_ server instance up and running on your machine;
+
+* you must download a `GCD database dump<https://www.comics.org/download/>`_ and import it on your server (this should be as easy as opening a shell and typing something like ``/path/to/MySQLserver/bin/mysql -u root -p gcd < /path/to/dump_file.sql``, where "root" is the username and "gcd" the imported database name - be aware that on slower machines the command could take a *while* to be processed);
+
+* you must install the `MySQLclient<https://github.com/PyMySQL/mysqlclient-python>`_ Python package. On Linux, this should be as easy as ``$ pip install mysqlclient``. On Windows, you may want to get the pre-compiled wheel packages from `Chris Gohlke's collection<http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient>`_, then ``> pip install path/to/downloaded/wheel``. 
+
+Once you are ready, set the ``USE_GCD_DUMP`` flag to ``True`` (it's ``False`` by default) to enable querying the database. Feel free to set the database connection parameters to your taste: if you leave them blank, you will be prompted at runtime. 
+
+Also, you may want to adjust the ``TRANSLATIONS`` setting: this is a list of commonly-founded words in "SPICLE" fields (like "signed", "painted", etc.) to be translated in your language. You will find it useful if you're indexing foreign language reprints. However, you may disable translations by setting ``USE_TRANSLATIONS`` flag to ``False`` (it's ``True`` by default). 
+
+To query the database dump for a field value, just put a ``DB_QUERY_MARK`` (it's ``>`` by default) at the start of your field, followed by the story id you want the value to be copied from. For instance::
+
+    script         > 12345
+    pencils        > 12345
+
+will pick up "script" and "pencils" authors from the story id "12345".
 
 Examples.
 ---------

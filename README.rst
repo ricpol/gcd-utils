@@ -31,12 +31,12 @@ GCD allows you to download relevant data in a convenient TSV format. Just open a
 
 Note: this toolkit works with TSV (tab-separated) format only. Do not download CSV (comma-separated) files.
 
-This toolkit allows you to convert the downloaded TSV file into a human-readable format: just drop your TSV in the same directory of the `offindex.py` script, double-click the script and follow the instructions. The script will convert all the TSV files found in the input directory at once. 
+This toolkit allows you to convert the downloaded TSV file into a human-readable format: just drop your TSV in the same directory of the ``offindex.py`` script, double-click the script and follow the instructions. The script will convert all the TSV files found in the input directory at once. 
 
 Start a new offline index file. 
 -------------------------------
 
-To help you starting a new offline index file, this script will make a fresh, empty human-readable grid for you. Just double-click the script and follow the instructions. Rename the resulting `empty.txt` file as you like, open it with your text editor (be sure to set the editor encoding to utf-8) and you are ready to go. 
+To help you starting a new offline index file, this script will make a fresh, empty human-readable grid for you. Just double-click the script and follow the instructions. Rename the resulting ``empty.txt`` file as you like, open it with your text editor (be sure to set the editor encoding to utf-8) and you are ready to go. 
 
 Besides the general offline indexing `instructions <http://docs.comics.org/wiki/Indexing_Offline>`_, you must follow a few simple rules:
 
@@ -54,9 +54,9 @@ There are also a few little tricks and shortcuts to speed up your work:
 
 * you may repeat the same field more than once in the same sequence: all values will be concatenated in the output. Also, "multi-line" fields are allowed: all same-indented lines below the first will be concatenated (open the example files to see how this works);
 
-* comments (`//` marks) and blank lines are ok and will be ignored;
+* comments (``//`` marks) and blank lines are ok and will be ignored;
 
-* you may put a `--SKIP` mark anywhere inside a sequence to prevent that sequence to be outputted. This is sometimes needed when you are indexing many similar issues from a common blueprint;
+* you may put a ``--SKIP`` mark anywhere inside a sequence to prevent that sequence to be outputted. This is sometimes needed when you are indexing many similar issues from a common blueprint;
 
 * you may use convenient abbreviations for genres and types: a few are already set, and you can add to your taste. 
 
@@ -83,11 +83,11 @@ Editable settings in the script.
 
 At the top of the script you will find some editable settings. Most notably:
 
-* `ISSUE_FIELDS` and `SEQUENCE_FIELDS` allow you to set, for each field, if it will be displayed in the empty grid, in what order, and (most important) a default value for the field;
+* ``ISSUE_FIELDS`` and ``SEQUENCE_FIELDS`` allow you to set, for each field, if it will be displayed in the empty grid, in what order, and (most important) a default value for the field;
 
-* `ALLOWED_TYPES` and `ALLOWED_GENRES` allow you to set a short name for each type/genre;
+* ``ALLOWED_TYPES`` and ``ALLOWED_GENRES`` allow you to set a short name for each type/genre;
 
-* `OUTPUT_DIR` and `INPUT_DIR` allow you to set new default in/out directories.
+* ``OUTPUT_DIR`` and ``INPUT_DIR`` allow you to set new default in/out directories.
 
 Querying a local dump of CGD database.
 --------------------------------------
@@ -116,7 +116,7 @@ will pick up "script" and "pencils" authors from the story id "12345".
 Examples.
 ---------
 
-Please check the `docs/examples` directory to find some examples of index files and generated outputs. 
+Please check the ``docs/examples`` directory to find some examples of index files and generated outputs. 
 
 TODO.
 -----
